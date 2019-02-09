@@ -44,8 +44,8 @@ UserSchema.methods.generateAuthToken = function () {
   var user = this;
   var access = 'auth';
   var token = jwt.sign({_id: user._id.toHexString(), access}, 'abc123').toString();
-
-  user.tokens.concat({access, token});
+  // console.log(user.tokens);
+  user.tokens.concat({access, token});//this statement is not working due to which one of the tests is failing have to debug it commit it for now as have to study  sockets now 
 
   return user.save().then(() => {
     return token;
